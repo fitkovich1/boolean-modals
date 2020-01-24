@@ -6,6 +6,9 @@ import Registration from './Components/Registration/Registration'
 import PasswordRecover from './Components/PasswordRecovery/PasswordRecover'
 import Header from './Components/Header/header';
 import Profile from './Components/Profile/Profile';
+import Modals from "./Components/Modals/Modals";
+import Time from "./Components/Time/Time";
+import Color from "./Components/Color/Color";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +19,9 @@ const App: React.FC = () => {
             <Route render={() => <Registration/>} path='/registration'/>
             <Route render={() => <PasswordRecover/>} path='/password_recover'/>
             <Route render={() => <Profile/>} path='/profile'/>
+            <Route render={() => <Modals />} path = '/modals'/>
+            <Route render={() => <Time/>} path = '/time'/>
+            <Route render={() => <Color />} path = '/color'/>
         </div>
     </div>
   );
