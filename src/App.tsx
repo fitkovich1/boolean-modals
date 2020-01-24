@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import s from './App.module.css';
+import {Route} from "react-router-dom";
+import Login from './Components/Login/Login'
+import Registration from './Components/Registration/Registration'
+import PasswordRecover from './Components/PasswordRecovery/PasswordRecover'
+import Header from './Components/Header/header';
+import Profile from './Components/Profile/Profile';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <Header/>
+        <div className={s.app}>
+            <Route render={() => <Login/>} path='/login'/>
+            <Route render={() => <Registration/>} path='/registration'/>
+            <Route render={() => <PasswordRecover/>} path='/password_recover'/>
+            <Route render={() => <Profile/>} path='/profile'/>
+        </div>
     </div>
   );
 }
