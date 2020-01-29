@@ -11,13 +11,13 @@ const Profile: React.FC = () => {
 
     let isAuth = useSelector((store: AppStateType) => store.profile.isAuth);
     let name = useSelector((store: AppStateType) => store.profile.name);
-    let token: string | null = localStorage.getItem('stringToken')
+    let token: string | null = localStorage.getItem('stringToken');
 
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(postProfileTC(token))
-    }, [])
+    }, []);
 
     if (isAuth) {
         return <Redirect to={'/login'}/>
@@ -32,6 +32,6 @@ const Profile: React.FC = () => {
             </button>
         </div>
     );
-}
+};
 
 export default Profile

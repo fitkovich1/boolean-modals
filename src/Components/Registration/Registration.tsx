@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import s from '../Registration/Registration.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {errorRegistrationData, sendRegistrationRequest} from "../../redux/registrationReducer";
+import {sendRegistrationRequest} from "../../redux/registrationReducer";
 import {NavLink, Redirect} from "react-router-dom";
 import loading from "../Registration/svgImages/loading.svg";
 import {AppStateType} from "../../redux/store";
+import {errorAC} from "../../redux/booleanReducer";
 
 
 const Registration: React.FC = () => {
@@ -12,9 +13,9 @@ const Registration: React.FC = () => {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const dispatch = useDispatch();
-    const error = useSelector((store: AppStateType) => store.registration.error);
-    const isloading = useSelector((store: AppStateType) => store.registration.isLoading);
-    const success = useSelector((store: AppStateType) => store.registration.success);
+    const error = useSelector((store: AppStateType) => store.boolean.error);
+    const isloading = useSelector((store: AppStateType) => store.boolean.isLoading);
+    const success = useSelector((store: AppStateType) => store.boolean.success);
     useEffect(() => {
     }, [error]);
     useEffect(() => {
@@ -22,15 +23,15 @@ const Registration: React.FC = () => {
 
     const onSetEmail = (e: React.FormEvent<HTMLInputElement>): void => {
         setEmail(e.currentTarget.value);
-        dispatch(errorRegistrationData(``));
+        dispatch(errorAC(``));
     };
     const onSetPassword = (e: React.FormEvent<HTMLInputElement>): void => {
         setPassword(e.currentTarget.value);
-        dispatch(errorRegistrationData(``));
+        dispatch(errorAC(``));
     };
     const onSetRepeatPassword = (e: React.FormEvent<HTMLInputElement>): void => {
         setRepeatPassword(e.currentTarget.value);
-        dispatch(errorRegistrationData(``));
+        dispatch(errorAC(``));
     };
     const validate = (email: string) => {
         const expression = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,7}$/i;
@@ -39,11 +40,11 @@ const Registration: React.FC = () => {
 
     const onRegisterClick = (): void => {
         if (repeatPassword !== password) {
-            dispatch(errorRegistrationData(`Passwords don't match`))
+            dispatch(errorAC(`Passwords don't match`))
         } else if (password.length <= 7) {
-            dispatch(errorRegistrationData(`Password must contain minimum 8 symbols`))
+            dispatch(errorAC(`Password must contain minimum 8 symbols`))
         } else if (!validate(email)) {
-            dispatch(errorRegistrationData(`Email is not valid`))
+            dispatch(errorAC(`Email is not valid`))
         } else {
             dispatch(sendRegistrationRequest(email, password))
         }

@@ -1,34 +1,35 @@
 import React, {useState} from 'react';
 import s from './Login.module.css';
 import {NavLink, Redirect} from "react-router-dom";
-import {errorLoginAC, putLoginTC} from '../../redux/loginReducer'
+import {putLoginTC} from '../../redux/loginReducer'
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../redux/store';
 import loading from '../Registration/svgImages/loading.svg'
+import {errorAC} from "../../redux/booleanReducer";
 
 const Login: React.FC = () => {
 
-    let [email, setLoginState] = useState('')
-    let [password, setPasswordState] = useState('')
-    let [rememberMe, setValueState] = useState(false)
-    let error = useSelector((store: AppStateType) => store.login.error);
+    let [email, setLoginState] = useState('');
+    let [password, setPasswordState] = useState('');
+    let [rememberMe, setValueState] = useState(false);
+    let error = useSelector((store: AppStateType) => store.boolean.error);
     let isAuth = useSelector((store: AppStateType) => store.profile.isAuth);
-    let isLoading = useSelector((store: AppStateType) => store.login.isLoading);
+    let isLoading = useSelector((store: AppStateType) => store.boolean.isLoading);
 
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
 
     let validationEmail = (email: string) => {
-        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         return reg.test(String(email).toLowerCase())
-    }
+    };
 
     let sendData = () => {
         if (!validationEmail(email) || password.length < 7) {
-            dispatch(errorLoginAC('Email/Password введен не корректно'))
+            dispatch(errorAC('Email/Password введен не корректно'))
         } else {
             dispatch(putLoginTC(email, password, rememberMe))
         }
-    }
+    };
 
     if (!isAuth) {
         return <Redirect to={'/profile'}/>
@@ -51,6 +52,6 @@ const Login: React.FC = () => {
             }
         </div>
     );
-}
+};
 
 export default Login

@@ -1,27 +1,66 @@
+const LOADING = 'LOADING';
+const ERROR = 'ERROR';
+const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
+interface IInitialStateBolean {
+    isLoading: boolean,
+    error: string,
+    success: boolean
+}
+export interface ILoadingAction {
+    type: typeof LOADING,
+}
+export interface IErrorAction {
+    type: typeof ERROR,
+    error: string
+}
+export interface IAuthSuccessAction {
+    type: typeof AUTH_SUCCESS,
+    success: boolean
+}
+type IActions = ILoadingAction | IErrorAction | IAuthSuccessAction;
 
-
-const ERROR_REGISTRATION_DATA = 'ERROR_REGISTRATION_DATA';
 const initialState = {
-
+    isLoading: false,
+    error: '',
+    success: false
 };
 
-const booleanReducer = (state: any = initialState, action: any):void => {
-   /*     switch (action.type) {
-            case ERROR_REGISTRATION_DATA: {
+const booleanReducer = (state: IInitialStateBolean = initialState, action: IActions): IInitialStateBolean => {
+        switch (action.type) {
+            case LOADING: {
+                return {
+                    ...state,
+                    isLoading: !state.isLoading
+                }
+            }
+            case ERROR: {
                 return {
                     ...state,
                     error: action.error
-                };
+                }
             }
-        }*/
+            case AUTH_SUCCESS:
+                return {
+                    ...state,
+                    success: action.success
+                }
+        }
         return state;
     };
 
-export const errorRegistrationData = (error: string) => {
+export const isLoadingAC = (): ILoadingAction => {
     return {
-        type: ERROR_REGISTRATION_DATA,
-        error
+        type: LOADING
+    }
+};
+
+export const errorAC = (error: string): IErrorAction => ({type: ERROR, error});
+
+export const isAuthSuccess = (success: boolean): IAuthSuccessAction => {
+    return {
+        type: AUTH_SUCCESS,
+        success
     }
 };
 
