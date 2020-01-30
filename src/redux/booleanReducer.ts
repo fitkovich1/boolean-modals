@@ -58,10 +58,7 @@ export const isLoadingAC = (): ILoadingAction => {
 export const errorAC = (error: string): IErrorAction => ({type: ERROR, error});
 
 export const isAuthSuccess = (success: boolean): IAuthSuccessAction => {
-    return {
-        type: AUTH_SUCCESS,
-        success
-    }
+    return {type: AUTH_SUCCESS, success}
 };
 
 export default booleanReducer;

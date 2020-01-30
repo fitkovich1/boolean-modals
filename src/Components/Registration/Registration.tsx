@@ -1,54 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import s from '../Registration/Registration.module.css';
-import {useDispatch, useSelector} from "react-redux";
-import {sendRegistrationRequest} from "../../redux/registrationReducer";
 import {NavLink, Redirect} from "react-router-dom";
 import loading from "../Registration/svgImages/loading.svg";
-import {AppStateType} from "../../redux/store";
-import {errorAC} from "../../redux/booleanReducer";
+import {useRegistrationLogic} from "./useRegistrationLogic";
 
 
 const Registration: React.FC = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repeatPassword, setRepeatPassword] = useState('');
-    const dispatch = useDispatch();
-    const error = useSelector((store: AppStateType) => store.boolean.error);
-    const isloading = useSelector((store: AppStateType) => store.boolean.isLoading);
-    const success = useSelector((store: AppStateType) => store.boolean.success);
-    useEffect(() => {
-    }, [error]);
-    useEffect(() => {
-    }, [isloading]);
-
-    const onSetEmail = (e: React.FormEvent<HTMLInputElement>): void => {
-        setEmail(e.currentTarget.value);
-        dispatch(errorAC(``));
-    };
-    const onSetPassword = (e: React.FormEvent<HTMLInputElement>): void => {
-        setPassword(e.currentTarget.value);
-        dispatch(errorAC(``));
-    };
-    const onSetRepeatPassword = (e: React.FormEvent<HTMLInputElement>): void => {
-        setRepeatPassword(e.currentTarget.value);
-        dispatch(errorAC(``));
-    };
-    const validate = (email: string) => {
-        const expression = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,7}$/i;
-        return expression.test(String(email).toLowerCase())
-    };
-
-    const onRegisterClick = (): void => {
-        if (repeatPassword !== password) {
-            dispatch(errorAC(`Passwords don't match`))
-        } else if (password.length <= 7) {
-            dispatch(errorAC(`Password must contain minimum 8 symbols`))
-        } else if (!validate(email)) {
-            dispatch(errorAC(`Email is not valid`))
-        } else {
-            dispatch(sendRegistrationRequest(email, password))
-        }
-    };
+    const {error, success, onSetEmail, onSetPassword,
+        onSetRepeatPassword, onRegisterClick,
+        isLoading} = useRegistrationLogic();
 
     if (success) return <Redirect to="/login"/>;
 
@@ -68,10 +28,10 @@ const Registration: React.FC = () => {
                 <input type="password" onChange={onSetRepeatPassword}/>
             </div>
             <span className={s.sp}>{error}</span>
-            {isloading &&
+            {isLoading &&
             <span><img src={loading} alt=""/></span>
             }
-            <button onClick={onRegisterClick} disabled={isloading}>Register</button>
+            <button onClick={onRegisterClick} disabled={isLoading}>Register</button>
             <NavLink to='/login'>Sign in</NavLink>
         </div>
     );

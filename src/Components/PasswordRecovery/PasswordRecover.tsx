@@ -1,20 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import s from './Password.module.css'
-import { useDispatch } from 'react-redux';
-import { sendRecoveryPasswordRequest } from '../../redux/passwordRecoveryReducer';
+import {usePasswordRecoverLogic} from "./usePasswordRecoverLogic";
 
 
 
 const PasswordRecover: React.FC = () => {
-  const [emailValue , setEmailValue] = useState('')
-  const dispatch = useDispatch()
-  let sendEmailValue = (e:any) =>{
-    setEmailValue(e.currentTarget.value)
-  }
-  const sendRecoveryPassword = () =>{
-
-      dispatch(sendRecoveryPasswordRequest(emailValue))
-  }
+  const {sendEmailValue, sendRecoveryPassword} = usePasswordRecoverLogic();
   
   return (
     <div className={s.recover}>
@@ -23,6 +14,6 @@ const PasswordRecover: React.FC = () => {
         <button onClick = {sendRecoveryPassword}>Send request</button>
     </div>
   );
-}
+};
 
 export default PasswordRecover;
