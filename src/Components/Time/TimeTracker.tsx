@@ -16,7 +16,6 @@ const Time = (props: any) => {
     let [buttonStartPlayPause, changeValueButtonPlay] = useState(true)
     let [pauseValue, changeValuePause] = useState("00:00:00")
 
-
     useEffect(() => {
         setInterval(() => {
             checkTime(new Date().toLocaleTimeString())
@@ -34,6 +33,7 @@ const Time = (props: any) => {
     let differenceTime: any = new Date(1970, 1, 1, differenceTime1)
 
     let difference: any = new Date('December 17, 1995 ' + pauseValue)
+
     debugger
 
     let elapsedTime = time  > newTime ? new Date(firstTimeInObject- secondTimeInObject - differenceTime - difference) : new Date(secondTimeInObject - firstTimeInObject - differenceTime - difference)
@@ -41,8 +41,10 @@ const Time = (props: any) => {
     let elapsedTime1: string = elapsedTime.toLocaleTimeString()
 
     let changeValueTrueStart = () => {
+        changeValueButtonPlay(true)
         changeValueButton(true)
-        props.addedTimeInArray(elapsedTime1)
+        let value = buttonStartPlayPause ? elapsedTime1 : pauseValue
+        props.addedTimeInArray(value)
     }
 
 
