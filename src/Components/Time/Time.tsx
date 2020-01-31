@@ -52,7 +52,7 @@ debugger
 
     return (
         <div className={s.time}>
-            <span>time</span>
+            <h2>Time</h2>
             <div>{time}</div>
             <input type={'time'}/>
             <div>
