@@ -1,36 +1,22 @@
-import React, {useState} from "react";
-import Modal from "./Modal";
+import React from "react";
+import ModalComponentSimple from "./ModalComponentSimple/ModalComponentSimple";
+import ModalComponentQuestion from "./ModalComponentQuestion/ModalComponentQuestion";
+import ModalComponentInput from "./ModalComponentInput/ModalComponentInput";
+import ModalComponentMessage from "./ModalComponentMessage/ModalComponentMessage";
+import s from "./Component/Modals.module.css"
 
 
 const Modals: React.FC = () => {
 
-    let [isShow, setShow] = useState(true)
-
-    let closeModalWindow = () => {
-        setShow(false)
-    }
-
-    let closeModal = () => {
-        setShow(false)
-    }
-
     return (
-        <div>
-            <Modal isShow={isShow} closeModal={closeModal}>
-                <span>Simple Modal</span>
-                <button onClick={closeModalWindow}>Close</button>
-            </Modal>
-            <button/>
-            {/*<Modal />*/}
-            {/*<Modal />*/}
-            {/*<Modal />*/}
-            {/*<Modal />*/}
+        <div className={s.modal}>
+            <ModalComponentSimple/>
+            <ModalComponentQuestion/>
+            <ModalComponentInput/>
+            <ModalComponentMessage/>
         </div>);
 };
 
-let Button = () => {
-
-}
 
 
 export default Modals;
