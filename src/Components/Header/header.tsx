@@ -7,17 +7,17 @@ const Header: React.FC = () => {
     let [showHeader, setShowHeader] = useState(false)
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor: '#31353d'}}>
         {showHeader?
         <div style = {{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
 <Button variant="contained" color="primary" onClick = {() =>setShowHeader(false)}>Hide dev header</Button>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/login'>sign-in</NavLink>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/registration'>register</NavLink>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/password_recover'>forgot</NavLink>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/profile'>neko</NavLink>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/modals'>modals</NavLink>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/time'>time</NavLink>
-<NavLink style = {{textDecoration : 'none', color: 'black'}} to='/color'>color</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/login'>sign-in</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/registration'>register</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/password_recover'>forgot</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/profile'>neko</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/modals'>modals</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/time'>time</NavLink>
+<NavLink style = {{textDecoration : 'none', color: 'white'}} to='/color'>color</NavLink>
         </div>:<Button variant="contained" color="primary" onClick = {() =>setShowHeader(true)}>Show dev header</Button>
     }
     </div>
