@@ -1,0 +1,10 @@
+.colorContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.choseColor{
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+}
