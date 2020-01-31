@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Login.module.css';
 import {NavLink, Redirect} from "react-router-dom";
-import loading from '../Registration/svgImages/loading.svg';
+import loading from '../Registration/svgImages/loader.svg';
 import {useLoginLogic} from "./useLoginLogic";
 
 const Login: React.FC = () => {
@@ -16,15 +16,25 @@ const Login: React.FC = () => {
     }
     return (
         <div className={s.login}>
-            <span>sing in</span>
+            <h2>Sign in</h2>
             <span className={s.error}>{error}</span>
-            <input value={email} onChange={(e) => setLoginState(e.currentTarget.value)}/>
-            <input value={password} onChange={(e) => setPasswordState(e.target.value)} type={'password'}/>
-            <NavLink to={'/password_recover'}>Forgot password?</NavLink>
-            <input type={'checkbox'} placeholder={'Remember Me'} onChange={() => setValueState(!rememberMe)}
-                   checked={rememberMe}/>
-            <button onClick={sendData} disabled={isLoading}>Sing In</button>
-            <NavLink to={'/registration'}>Registration</NavLink>
+            <div className={s.email}>
+                <span>Email:</span>
+                <input value={email} onChange={(e) => setLoginState(e.currentTarget.value)}/>
+            </div>
+            <div>
+                <span>Password:</span>
+                <input value={password} onChange={(e) => setPasswordState(e.target.value)} type={'password'}/>
+            </div>
+
+
+            <NavLink to={'/password_recover'}><span>Forgot password?</span></NavLink>
+            <div className={s.rememberMe}>
+                <input type={'checkbox'} placeholder={'Remember Me'} onChange={() => setValueState(!rememberMe)} checked={rememberMe}/>
+                <span>Remember me</span>
+            </div>
+            <button onClick={sendData} disabled={isLoading}>Sign In</button>
+            {/*<NavLink to={'/registration'}><span>Registration</span></NavLink>*/}
             {isLoading &&
             <img src={loading}/>
             }

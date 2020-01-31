@@ -24,7 +24,7 @@ const Color: React.FC = () => {
                         <button onClick={() => deleteInputElement(c.id)}>delete</button>
                     </div>)
             })}
-            <button onClick={addInputElement}>ADD</button>
+            <button onClick={addInputElement}>Add</button>
         </div>
     );
 };

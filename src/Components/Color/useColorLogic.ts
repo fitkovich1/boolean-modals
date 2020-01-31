@@ -17,10 +17,11 @@ export const useColorLogic = () => {
             width: '400px',
             height: '100px',
             margin: '10px',
-            background: ''
+            background: '',
+            border: '1px solid white'
         }
     });
-    let [color, setColor] = useState('#333333');
+    let [color, setColor] = useState('#7FFF00');
     let [deg, setDeg] = useState('90');
     let [inputMass, setInputMass] = useState([
         {color: '#240000', value: -12, id: 0},

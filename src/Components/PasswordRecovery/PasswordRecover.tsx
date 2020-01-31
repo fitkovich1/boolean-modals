@@ -9,7 +9,7 @@ const PasswordRecover: React.FC = () => {
   
   return (
     <div className={s.recover}>
-        <div>Forgot password</div>
+        <h2>Forgot password?</h2>
         <input onChange = {sendEmailValue}></input>
         <button onClick = {sendRecoveryPassword}>Send request</button>
     </div>
